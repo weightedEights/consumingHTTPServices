@@ -29,6 +29,5 @@ def main():
     print(type(new_json), new_json)
 
 
-
 if __name__ == '__main__':
     main()
