@@ -28,7 +28,6 @@ def main():
     print("git clone {}".format(repo_clone))
 
 
-
 def get_repo_info():
 
     user = input("What is the username?")
