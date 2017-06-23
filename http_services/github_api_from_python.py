@@ -4,12 +4,15 @@
 """  Some Description """
 
 
-import requests
+import requests, json
 
 
 def main():
 
-    pass
+    url = 'https://api.github.com/repos/mikeckennedy/consuming_services_python_demos'
+    resp = requests.get(url)
+
+    print(json.dumps(json.loads(resp.text), indent = True))
 
 
 if __name__ == '__main__':
