@@ -15,6 +15,10 @@ def main():
     url = 'https://api.github.com/repos/{}/{}'.format(user, repo)
     resp = requests.get(url)
 
+    if resp.status_code != 200:
+        print("Error accessing repo: {}".format(resp.status_code))
+        return
+
     print(json.dumps(json.loads(resp.text), indent = True))
 
 
