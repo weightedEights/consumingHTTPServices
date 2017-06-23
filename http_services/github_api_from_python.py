@@ -4,7 +4,7 @@
 """  Some Description """
 
 
-import requests, json
+import requests
 
 
 def main():
@@ -19,7 +19,14 @@ def main():
         print("Error accessing repo: {}".format(resp.status_code))
         return
 
-    print(json.dumps(json.loads(resp.text), indent = True))
+    repo_data = resp.json()
+    repo_clone = repo_data.get('clone_url', 'ERROR: No Data')
+
+    print("To clone {}'s repo named {}..".format(user, repo))
+    print("The command is: ")
+    print()
+    print("git clone {}".format(repo_clone))
+
 
 
 def get_repo_info():
