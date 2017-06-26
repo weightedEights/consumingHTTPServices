@@ -6,6 +6,10 @@
 
 import os
 from xml.etree import ElementTree
+import collections
+
+
+Course = collections.namedtuple('Course', 'title room building')
 
 
 def main():
@@ -18,7 +22,21 @@ def main():
 
     dom = ElementTree.fromstring(xml_text)
 
-    print(dom)
+    course_nodes = dom.findall('course')
+
+    courses = [
+        Course(n.find('title').text, n.find('place/room').text, n.find('place/building').text)
+        for n in course_nodes
+    ]
+
+    building = input("What building are you in? ")
+    room = input("What room are you near? ")
+
+    room_courses = [c.title for c in courses if c.building == building and c.room == room]
+
+    for c in room_courses:
+        print('*' + c)
+
 
 if __name__ == '__main__':
     main()
