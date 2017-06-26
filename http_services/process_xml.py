@@ -8,7 +8,7 @@ import os
 from xml.etree import ElementTree
 import collections
 
-
+# named tuple.. a class with fields only, no functions. better data container
 Course = collections.namedtuple('Course', 'title room building')
 
 
@@ -20,10 +20,13 @@ def main():
     with open(file) as fin:
         xml_text = fin.read()
 
+    # data object model
     dom = ElementTree.fromstring(xml_text)
 
+    # findall is a xpath query
     course_nodes = dom.findall('course')
 
+    # sub-queries inside the findall query
     courses = [
         Course(n.find('title').text, n.find('place/room').text, n.find('place/building').text)
         for n in course_nodes
