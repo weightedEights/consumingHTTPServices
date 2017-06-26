@@ -32,7 +32,11 @@ def main():
     building = input("What building are you in? ")
     room = input("What room are you near? ")
 
-    room_courses = [c.title for c in courses if c.building == building and c.room == room]
+    room_courses = [
+        c.title
+        for c in courses
+        if c.building == building and c.room == room
+    ]
 
     for c in room_courses:
         print('*' + c)
